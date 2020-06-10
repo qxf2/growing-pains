@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <title>Growing pains at Qxf2</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            padding-top: 40px;
+            font-size: 16px;
+            font-family: "Open Sans", serif;
+            line-height: 2.0;
+        }
+
+        .top-space-30 {
+            padding-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row top-space-30">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel">
+                    <h3 id="summary">What is this?</h3>
+                    <p class="mb-0 top-space-30" id="description">There is a small chance that Qxf2 will grow larger in
+                        the coming
+                        years. Like any chess player, I belive in preparing, evaluating and familiarizing ourselves with
+                        future positions that might arise. This app is one way for me to share some problems and
+                        situations that I foresee. <br><br>
+                        Most of the problems listed here have neither a lasting solution nor do they have a
+                        silverbullet. But I am sharing them in the hope that they spark conversations with your
+                        colleagues and those conversations in turn increase our common understanding.</p>
+                </div>
+            </div>
+            <div class="col-md-2">&nbsp;</div>
+        </div>
+        <div class="row top-space-30">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <center>
+                    <button class="btn btn-success" id="getPain">Tell me about a growing pain</button>
+                </center>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+    <script>
+        $("document").ready(function () {
+            $("#getPain").click(function () {
+                var callDetails = {
+                    url: '/get-random-pain',
+                    type: 'GET'
+                };
+                $.ajax(callDetails).done(function (painDetails) {
+                    console.log(painDetails);
+                    $("#summary").text(painDetails.summary);
+                    $("#description").text(painDetails.description);
+                    $("#getPain").text("Show me another!")
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
