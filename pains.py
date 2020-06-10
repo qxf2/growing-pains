@@ -31,4 +31,4 @@ def get_random_quote():
     return flask.jsonify(pain)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=6464, debug=True)
+    app.run(host="0.0.0.0", port=6464)
