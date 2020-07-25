@@ -11,7 +11,7 @@
             <tbody>
                 {% for row in rows %}
                 <tr>
-                    <td>{{ row[0] }}</td>
+                    <td class="details-control">{{ row[0] }}</td>
                     <td>{{ row[1] }}</td>
                 </tr>
                 {% endfor %}
@@ -19,8 +19,36 @@
     </div>
 </div>
 <script>
+    //Src: https://datatables.net/examples/api/row_details.html
+    function format(d) {
+        // `d` is the original data object for the row
+        return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+            '<tr class="description text-justify">' +
+            '<td>' + d[1] + '</td>' +
+            '</tr>' +
+            '</table>';
+    }
     $(document).ready(function () {
-        $('#all-pains').DataTable();
+        var table = $('#all-pains').DataTable({
+            "order": [],
+            "columnDefs": [
+                {
+                    "targets": [1],
+                    "visible": false,
+                }
+            ]
+        });
+        $('#all-pains tbody').on('click', 'td.details-control', function () {
+            var tr = $(this).closest('tr');
+            var row = table.row(tr);
+
+            if (row.child.isShown()) {
+                row.child.hide();
+            }
+            else {
+                row.child(format(row.data())).show();
+            }
+        });
     });
 </script>
 {% endblock %}

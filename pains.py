@@ -45,4 +45,4 @@ def all_page():
     return render_template('all.html', rows=all_pains)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=6464, debug=True)
+    app.run(host="0.0.0.0", port=6464)
