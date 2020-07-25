@@ -13,7 +13,4 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
-        script: |
-        cd code/growing-pains
-        git pull
-        sudo systemctl restart pains
+        script: cd code/growing-pains
